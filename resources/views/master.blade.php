@@ -20,10 +20,11 @@
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Hallo! <b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Create... <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href="{{ action("TasklistController@create") }}">Create tasklist</a></li>
                             <li><a href="{{ action("TaskCategoryController@create") }}">Create category</a></li>
+                            <li><a href="{{ action("TaskController@create") }}">Create task</a></li>
                         </ul>
                     </li>
                 </ul>
