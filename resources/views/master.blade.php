@@ -22,7 +22,8 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Hallo! <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="{{ action("TasklistController@create") }}">Maak tasklist</a></li>
+                            <li><a href="{{ action("TasklistController@create") }}">Create tasklist</a></li>
+                            <li><a href="{{ action("TaskCategoryController@create") }}">Create category</a></li>
                         </ul>
                     </li>
                 </ul>

@@ -7,6 +7,7 @@
 
     </div>
 </h2>
+@if($category->tasks()->whereNull('tasks.parenttask')->count() > 0)
 <ul class="list-unstyled">
     <li>
         <div class="row">
@@ -22,4 +23,12 @@
         @include('task.show', ['task' => $task, 'category' => $category ])
     @endforeach
 </ul>
+@else
+    <ul class="list-unstyled">
+        <li>
+            <span>No tasks have been specified yet!</span>
+        </li>
+    </ul>
+@endif
+<a href="{{action('TaskController@create', ['catid' => $category->id])}}"><span class="glyphicon glyphicon-plus-sign"></span> Add task</a>
 <hr>
