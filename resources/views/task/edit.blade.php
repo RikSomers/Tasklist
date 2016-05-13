@@ -1,13 +1,17 @@
 @extends('master')
 
 @section('content')
+    <h1>
+        <div class="row">
+            <div class="col-md-11">Edit Task</div>
+            <div class="col-md-1 text-right"><a href="{{ URL::previous() }}">Back</a></div>
+        </div>
+    </h1><br />
+
     @include('errors.errors')
     <form class="form-horizontal" action="{{action("TaskController@update", ['id' => $task->id])}}" method="POST">
         <input type="hidden" name="_method" value="PUT" />
         <fieldset>
-            <!-- Form Name -->
-            <legend>Edit Task</legend>
-
             <!-- Text input-->
             <div class="form-group">
                 <label class="col-md-1 control-label" for="catid">Category</label>

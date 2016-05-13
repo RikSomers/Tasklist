@@ -1,12 +1,15 @@
 @extends('master')
 
 @section('content')
+    <h1>
+        <div class="row">
+            <div class="col-md-11">Create Task</div>
+            <div class="col-md-1 text-right"><a href="{{ URL::previous() }}">Back</a></div>
+        </div>
+    </h1><br />
     @include('errors.errors')
     <form class="form-horizontal" action="{{action("TasklistController@store")}}" method="POST">
         <fieldset>
-            <!-- Form Name -->
-            <legend>Create Tasklist</legend>
-
             <!-- Text input-->
             <div class="form-group">
                 <label class="col-md-1 control-label" for="name">Name</label>

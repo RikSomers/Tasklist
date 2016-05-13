@@ -2,8 +2,11 @@
 
 @section('content')
     <h1>
-        {{$tasklist->name }} [<span id="totalCount">{{$tasklist->completedTasks()}}</span>/{{$tasklist->totalTasks()}}]
-    </h1>
+        <div class="row">
+            <div class="col-md-11">{{$tasklist->name }} [<span id="totalCount">{{$tasklist->completedTasks()}}</span>/{{$tasklist->totalTasks()}}]</div>
+            <div class="col-md-1 text-right"><a href="{{ action('TasklistController@index') }}">Back</a></div>
+        </div>
+    </h1><br />
     <hr>
     @if($tasklist->categories()->count() > 0)
         @foreach($tasklist->categories as $category)
