@@ -8,6 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Task extends Model
 {
 
+    protected $fillable = [
+        'task', 'meta', 'catid', 'parenttask'
+    ];
+
     public function parent()
     {
         return $this->belongsTo(Task::class, 'parenttask', 'id');

@@ -23,12 +23,14 @@ class TaskCategoryController extends Controller
     /**
      * Show the form for creating a new resource.
      *
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
+        $current = $request->input('listid');
         $tasklists = TaskList::all();
-        return view('category.create', compact('tasklists'));
+        return view('category.create', compact('tasklists', 'current'));
     }
 
     /**
@@ -56,12 +58,13 @@ class TaskCategoryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param \App\TaskCategory $category
      * @return \Illuminate\Http\Response
+     * @internal param int $id
      */
-    public function show($id)
+    public function show(TaskCategory $category)
     {
-        //
+        return view('category.show', compact('category'));
     }
 
     /**
@@ -104,11 +107,14 @@ class TaskCategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param \App\TaskCategory $category
      * @return \Illuminate\Http\Response
+     * @throws \Exception
+     * @internal param int $id
      */
-    public function destroy($id)
+    public function destroy(TaskCategory $category)
     {
-        //
+        $category->delete();
+        return redirect(action('TasklistController@show', ['id' => $category->listid]));
     }
 }

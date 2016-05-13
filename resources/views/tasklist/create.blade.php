@@ -12,7 +12,7 @@
                 <label class="col-md-1 control-label" for="name">Name</label>
                 <div class="col-md-6">
                     <input id="name" name="name" type="text" placeholder="Input name..." class="form-control input-md">
-                    <span class="help-block">The name of the task</span>
+                    <span class="help-block">The name of the tasklist</span>
                 </div>
             </div>
 

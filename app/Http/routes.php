@@ -15,4 +15,6 @@ Route::get('/', 'TasklistController@index');
 
 Route::resource('Tasklist', 'TasklistController');
 Route::resource('Category', 'TaskCategoryController');
+
+Route::put('Task/signoff/{Task}', 'TaskController@signoff');
 Route::resource('Task', 'TaskController');

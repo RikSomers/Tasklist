@@ -49,7 +49,7 @@
 
             $.ajax({
                 type: 'PUT',
-                url: '../Task/' + parts[1],
+                url: '../Task/signoff/' + parts[1],
                 data: {checked: this.checked},
                 success: function(data) {
                     console.log(data);
