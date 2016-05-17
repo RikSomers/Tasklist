@@ -42,6 +42,20 @@
                 </div>
             </div>
 
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-1 control-label" for="taskorder">Insert task after:</label>
+                <div class="col-md-6">
+                    <select id="taskorder" name="taskorder" class="form-control">
+                        <option value="-1" selected="selected"> </option>
+                        @foreach($tasks as $task)
+                            <option value="{{$task->id}}">{{$task->task}}</option>
+                        @endforeach
+                    </select>
+                    <span class="help-block">Leave empty if the task should be inserted at the end of the list.</span>
+                </div>
+            </div>
+
             <div class="form-group">
                 <label class="col-md-1 control-label" for="save"></label>
                 <div class="col-md-6">

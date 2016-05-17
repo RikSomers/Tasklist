@@ -9,7 +9,7 @@ class Task extends Model
 {
 
     protected $fillable = [
-        'task', 'meta', 'catid', 'parenttask'
+        'task', 'meta', 'catid', 'parenttask', 'taskorder'
     ];
 
     public function parent()

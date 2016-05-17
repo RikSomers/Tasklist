@@ -30,7 +30,8 @@ class TaskController extends Controller
     {
         $current = $request->input('catid');
         $categories = TaskCategory::all();
-        return view('task.create', compact('categories', 'current'));
+        $tasks = is_null($current) ? Task::all()->orderBy('taskorder') : Task::where('catid', $current)->orderBy('taskorder')->get();
+        return view('task.create', compact('categories', 'current', 'tasks'));
     }
 
     /**
@@ -47,12 +48,25 @@ class TaskController extends Controller
             'parenttask' => 'exists:tasks,id'
         ]);
 
-        Task::create([
+        $insertedTask = Task::create([
             'task' => $request->input('task'),
             'meta' => $request->input('meta'),
             'catid' => $request->input('catid'),
             'parenttask' => $request->input('parenttask'),
+            'taskorder' => Task::orderBy('taskorder', 'DESC')->first()->taskorder +1
         ]);
+
+        if($request->input('taskorder') && $request->input('taskorder') != -1) {
+            Task::where('id', '>', $request->input('taskorder'))->get()->each(function($task){
+                $task->taskorder = $task->taskorder +2;
+                $task->save();
+            });
+
+            $task = Task::findOrFail($request->input('taskorder'));
+
+            $insertedTask->taskorder = $task->taskorder +1;
+            $insertedTask->save();
+        }
 
         return redirect(action('TasklistController@show', ['id' => TaskCategory::findOrFail($request->input('catid'))->listid]));
     }
@@ -79,7 +93,8 @@ class TaskController extends Controller
     public function edit(Task $task)
     {
         $categories = TaskCategory::all();
-        return view('task.edit', compact('categories', 'task'));
+        $tasks = Task::where('catid', $task->catid)->orderBy('taskorder')->get();
+        return view('task.edit', compact('categories', 'task', 'tasks'));
     }
 
     /**
@@ -104,6 +119,18 @@ class TaskController extends Controller
             'catid' => $request->input('catid'),
             'parenttask' => $request->input('parenttask'),
         ]);
+
+        if($request->input('taskorder') && $request->input('taskorder') != -1) {
+            Task::where('id', '>', $request->input('taskorder'))->get()->each(function($task){
+                $task->taskorder = $task->taskorder +2;
+                $task->save();
+            });
+
+            $before = Task::findOrFail($request->input('taskorder'));
+
+            $task->taskorder = $before->taskorder +1;
+            $task->save();
+        }
 
         return redirect(action('TasklistController@show', ['id' => TaskCategory::findOrFail($task->catid)->listid]));
     }

@@ -27,7 +27,7 @@
                 <label class="col-md-1 control-label" for="task">Task</label>
                 <div class="col-md-6">
                     <input id="task" name="task" type="text" placeholder="Input task..." class="form-control input-md">
-                    <span class="help-block">The name of the category</span>
+                    <span class="help-block">The name of the task</span>
                 </div>
             </div>
 
@@ -37,6 +37,20 @@
                 <div class="col-md-6">
                     <input id="meta" name="meta" type="text" placeholder="Input meta..." class="form-control input-md">
                     <span class="help-block">Meta of the task (for example, what are the rewards)</span>
+                </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-1 control-label" for="taskorder">Insert task after:</label>
+                <div class="col-md-6">
+                    <select id="taskorder" name="taskorder" class="form-control">
+                        <option value="-1" selected="selected"> </option>
+                        @foreach($tasks as $task)
+                            <option value="{{$task->id}}">{{$task->task}}</option>
+                        @endforeach
+                    </select>
+                    <span class="help-block">Leave empty if the task should be inserted at the end of the list.</span>
                 </div>
             </div>
 

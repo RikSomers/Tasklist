@@ -23,7 +23,7 @@
             </div>
         </div>
     </li>
-    @foreach($category->tasks()->whereNull('tasks.parenttask')->get() as $task)
+    @foreach($category->tasks()->whereNull('tasks.parenttask')->orderBy('taskorder')->get() as $task)
         @include('task.show', ['task' => $task, 'category' => $category ])
     @endforeach
 </ul>

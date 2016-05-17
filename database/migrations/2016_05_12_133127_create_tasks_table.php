@@ -19,6 +19,7 @@ class CreateTasksTable extends Migration
             $table->integer('catid')->unsigned();
             $table->integer('parenttask')->unsigned()->nullable();
             $table->dateTime('signedoff')->nullable()->nullable();
+            $table->integer('taskorder')->unsigned();
             $table->timestamps();
         });
     }
