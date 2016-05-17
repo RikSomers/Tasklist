@@ -57,7 +57,7 @@ class TaskController extends Controller
         ]);
 
         if($request->input('taskorder') && $request->input('taskorder') != -1) {
-            Task::where('id', '>', $request->input('taskorder'))->get()->each(function($task){
+            Task::where('id', '>', $request->input('taskorder'))->where('catid', $request->input('catid'))->get()->each(function($task){
                 $task->taskorder = $task->taskorder +2;
                 $task->save();
             });
@@ -121,7 +121,7 @@ class TaskController extends Controller
         ]);
 
         if($request->input('taskorder') && $request->input('taskorder') != -1) {
-            Task::where('id', '>', $request->input('taskorder'))->get()->each(function($task){
+            Task::where('id', '>', $request->input('taskorder'))->where('catid', $request->input('catid'))->get()->each(function($task){
                 $task->taskorder = $task->taskorder +2;
                 $task->save();
             });
