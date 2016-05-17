@@ -4,6 +4,7 @@
         <div class="col-md-4">{{ $category->title == null ? '' : '[' . $category->title . ']'}}</div>
         <div class="col-md-1">[<span id="count-{{$category->id}}">{{$category->completedTasks()}}</span>/{{$category->totalTasks() }}]</div>
         <div class="col-md-2">
+            <a href="{{ action('TaskCategoryController@export', ['id' => $category->id]) }}"><span class="glyphicon glyphicon-export"></span></a>
             <a href="{{ action('TaskCategoryController@edit', ['id' => $category->id]) }}"><span class="glyphicon glyphicon-pencil"></span></a>
             <a href="{{ action('TaskCategoryController@destroy', ['id' => $category->id]) }}" data-method="delete" data-confirm="Are you sure?"><span class="glyphicon glyphicon-trash"></span></a>
         </div>

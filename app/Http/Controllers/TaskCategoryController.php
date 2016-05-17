@@ -117,4 +117,9 @@ class TaskCategoryController extends Controller
         $category->delete();
         return redirect(action('TasklistController@show', ['id' => $category->listid]));
     }
+
+    public function export(TaskCategory $category)
+    {
+        return view('category.export', compact('category'));
+    }
 }
